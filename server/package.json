@@ -1,25 +1,20 @@
 {
-  "name": "layout",
+  "name": "demo-expressjs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/dinh2350/cyberlear-cyberstudent-layout.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/dinh2350/cyberlear-cyberstudent-layout/issues"
-  },
-  "homepage": "https://gitlab.com/dinh2350/cyberlear-cyberstudent-layout#readme",
   "dependencies": {
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.15.0"
   }
 }

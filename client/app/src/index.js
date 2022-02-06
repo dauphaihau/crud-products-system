@@ -16,27 +16,27 @@ const renderStudentList = async () => {
         .reverse()
         .map(
             (item, index) => `<tr>
-    <th scope="row">${(index += 1)}</th>
-    <td>${item.name}</td>
-    <td>${item.age}</td>
-    <td>${item.level}</td>
-    <td>
-      <button type="button" class="btn btn-danger"
-      onclick="handleDelete('${item.id}')"
-      >
-        Delete
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#studentModal"
-        onclick="handleEdit('${item.id}')"
-      >
-        Edit
-      </button>
-    </td>
-  </tr>`
+                                <th scope="row">${(index += 1)}</th>
+                                <td>${item.name}</td>
+                                <td>${item.age}</td>
+                                <td>${item.level}</td>
+                                <td>
+                                  <button type="button" class="btn btn-danger"
+                                  onclick="handleDelete('${item.id}')"
+                                  >
+                                    Delete
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-toggle="modal"
+                                    data-target="#studentModal"
+                                    onclick="handleEdit('${item.id}')"
+                                  >
+                                    Edit
+                                  </button>
+                                </td>
+                              </tr>`
         )
         .reduce((sumString, item) => (sumString += item), "");
     document.getElementById("tbody").innerHTML = contentHtml;

@@ -1,28 +1,32 @@
 const {DataTypes} = require("sequelize");
 
-const createStudentModel = (sequelize) => {
-    return sequelize.define('Student', {
+const createProductModel = (sequelize) => {
+    return sequelize.define('Product', {
             name: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            age: {
+            amount: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            level: {
+            price: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            sale: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
         },
         {
-            tableName: 'students',
+            tableName: 'products',
             timestamps: true
         }
     )
 }
 
 module.exports = {
-    createStudentModel
+    createProductModel
 };
 

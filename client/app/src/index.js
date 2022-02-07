@@ -1,25 +1,26 @@
 import {
-    getStudentList,
-    getStudentDetail,
-    createStudent,
-    updateStudent,
-    deleteStudent,
-} from "./api/student.js";
+    getProductList,
+    getProductDetail,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+} from "./api/product.js";
 
 let store = {
-    studentDetail: null,
+    productDetail: null,
 };
 
-const renderStudentList = async () => {
-    const list = await getStudentList();
+const renderProductList = async () => {
+    const list = await getProductList();
     const contentHtml = list
         .reverse()
         .map(
             (item, index) => `<tr>
                                 <th scope="row">${(index += 1)}</th>
                                 <td>${item.name}</td>
-                                <td>${item.age}</td>
-                                <td>${item.level}</td>
+                                <td>${item.amount}</td>
+                                <td>${item.price}</td>
+                                <td>${item.sale}</td>
                                 <td>
                                   <button type="button" class="btn btn-danger"
                                   onclick="handleDelete('${item.id}')"
@@ -30,7 +31,7 @@ const renderStudentList = async () => {
                                     type="button"
                                     class="btn btn-primary"
                                     data-toggle="modal"
-                                    data-target="#studentModal"
+                                    data-target="#productModal"
                                     onclick="handleEdit('${item.id}')"
                                   >
                                     Edit
@@ -41,56 +42,60 @@ const renderStudentList = async () => {
         .reduce((sumString, item) => (sumString += item), "");
     document.getElementById("tbody").innerHTML = contentHtml;
 };
-renderStudentList();
+renderProductList();
 
 const handleEdit = async (id) => {
-    document.getElementById("title-model").innerHTML = "Edit student";
-    document.getElementById("addStudent").style["display"] = "none";
-    document.getElementById("updateStudent").style["display"] = "block";
-    const student = await getStudentDetail(id);
-    document.getElementById("name").value = student.name;
-    document.getElementById("level").value = student.level;
-    document.getElementById("age").value = student.age;
-    store.studentDetail = student;
+    document.getElementById("title-model").innerHTML = "Edit product";
+    document.getElementById("addProduct").style["display"] = "none";
+    document.getElementById("updateProduct").style["display"] = "block";
+    const product = await getProductDetail(id);
+    document.getElementById("name").value = product.name;
+    document.getElementById("amount").value = product.amount;
+    document.getElementById("price").value = product.price;
+    document.getElementById("sale").value = product.sale;
+    store.productDetail = product;
 };
 window.handleEdit = handleEdit;
 document.getElementById("btnPopupModalAdd").addEventListener("click", () => {
-    document.getElementById("title-model").innerHTML = "Add Student";
-    document.getElementById("addStudent").style["display"] = "block";
-    document.getElementById("updateStudent").style["display"] = "none";
+    document.getElementById("title-model").innerHTML = "Add Product";
+    document.getElementById("addProduct").style["display"] = "block";
+    document.getElementById("updateProduct").style["display"] = "none";
     document.getElementById("name").value = "";
-    document.getElementById("level").value = "";
-    document.getElementById("age").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("sale").value = "";
 });
 
-document.getElementById("addStudent").addEventListener("click", async () => {
+document.getElementById("addProduct").addEventListener("click", async () => {
     const name = document.getElementById("name").value;
-    const level = +document.getElementById("level").value;
-    const age = +document.getElementById("age").value;
-    const student = {name, age, level};
-    await createStudent(student);
-    await renderStudentList();
+    const price = +document.getElementById("price").value;
+    const amount = +document.getElementById("amount").value;
+    const sale = document.getElementById("sale").value;
+    const product = {name, amount, price, sale};
+    await createProduct(product);
+    await renderProductList();
     $("#modalMessage").modal("show");
-    $("#studentModal").modal("hide");
+    $("#productModal").modal("hide");
 });
 
-document.getElementById("updateStudent").addEventListener("click", async () => {
+document.getElementById("updateProduct").addEventListener("click", async () => {
     const name = document.getElementById("name").value;
-    const level = +document.getElementById("level").value;
-    const age = +document.getElementById("age").value;
-    const {id} = store.studentDetail;
-    const student = {name, age, level};
+    const price = +document.getElementById("price").value;
+    const amount = +document.getElementById("amount").value;
+    const sale = document.getElementById("sale").value;
+    const {id} = store.productDetail;
+    const product = {name, amount, price, sale};
 
-    await updateStudent(id, student);
+    await updateProduct(id, product);
 
-    await renderStudentList();
+    await renderProductList();
     $("#modalMessage").modal("show");
-    $("#studentModal").modal("hide");
+    $("#productModal").modal("hide");
 });
 
 const handleDelete = async (id) => {
-    await deleteStudent(id);
-    await renderStudentList();
+    await deleteProduct(id);
+    await renderProductList();
     $("#modalMessage").modal("show");
 };
 window.handleDelete = handleDelete;

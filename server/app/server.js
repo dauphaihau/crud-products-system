@@ -1,10 +1,10 @@
 const express = require('express');
-const router = require('./routes/root.router');
+const router = require('./routes');
 const cors = require('cors');
 const app = express();
 const port = 1111;
 
-app.use(express.json()) // convert all req, res to json
+app.use(express.json())
 
 app.use(cors());
 

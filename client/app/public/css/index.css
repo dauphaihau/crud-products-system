@@ -1,6 +1,5 @@
 .bg-base {
   height: 100vh;
-  /*background-image: url("https://wi.wallpapertip.com/wsimgs/49-493241_background-image-for-student-portal.jpg");*/
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -17,7 +16,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.student-managerment__content {
+.product-managerment__content {
   width: 80%;
 }
 
@@ -37,7 +36,7 @@
   min-width: 100px;
 }
 
-.student-list {
+.product-list {
   min-height: 80vh;
   max-height: 80vh;
   overflow-y: scroll;

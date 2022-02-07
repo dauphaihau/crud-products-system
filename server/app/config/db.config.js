@@ -2,6 +2,6 @@ module.exports = {
     HOST: 'localhost',
     USER: 'root',
     PASSWORD: 'onohiroki12',
-    DB: 'students_management',
+    DB: 'products_management',
     dialect: 'mysql'
 };
